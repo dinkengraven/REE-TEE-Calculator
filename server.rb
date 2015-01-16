@@ -9,7 +9,7 @@ def calculate_ree(weight, height, age, sex)
 	end
 end
 
-def calculate_tee(ree, activity_factor, weight_loss = "1")
+def calculate_tee(ree, activity_factor, weight_loss = "1") #this will default weight_loss to 1 unless otherwise specified	
 	tee = ree * activity_factor
 	if weight_loss == "1"
 		return tee - 500
