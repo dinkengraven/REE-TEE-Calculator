@@ -32,30 +32,28 @@
   	</p>
 </form>
 
-<p>
-<% if @ree %>
-REE = <%= @ree %> kcal
-<% end %>
-</p>
+<% if params[:height].nil? == false %>
+  <p>
+  REE = <%= @ree %> kcal
+  </p>
 
-<p>
-<% if @tee %>
-TEE = <%= @tee %> kcal/day to lose <%= @weight_loss %> lb per week.
-<% end %>
-</p>
+  <p>
+  TEE = <%= @tee %> kcal/day to lose <%= @weight_loss %> lb per week.
+  </p>
 
-<table border="0" width="24%" cellpadding="2" cellspacing="1">
-	<tr>
-		<th align="center" colspan="2"><br><H3>Calorie Needs as Weight is Lost</H3>
-		</th>
-	</tr>
-	<tr align="center">
-		<th>Weight lost</th>
-		<th>Calorie needs (kcal/day)</th>
-	<tr>
-	<% @kcal_trends.each_with_index do |kcal_needs, pounds_lost| %>
-		<td align="right"><%= pounds_lost %> lb</td>
-		<td align="center"><%= kcal_needs %></td>
-	</tr>
-	<% end %>
-</table>
+  <table border="0" width="24%" cellpadding="2" cellspacing="1">
+  	<tr>
+  		<th align="center" colspan="2"><br><H3>Calorie Needs as Weight is Lost</H3>
+  		</th>
+  	</tr>
+  	<tr align="center">
+  		<th>Weight lost</th>
+  		<th>Calorie needs (kcal/day)</th>
+  	<tr>
+  	<% @kcal_trends.each_with_index do |kcal_needs, pounds_lost| %>
+  		<td align="right"><%= pounds_lost %> lb</td>
+  		<td align="center"><%= kcal_needs %></td>
+  	</tr>
+  	<% end %>
+  </table>
+<% end %>
