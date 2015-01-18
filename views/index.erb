@@ -17,13 +17,18 @@
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-      <script $(function () {$ ('[data-toggle="tooltip"]').tooltip() })
+      <script>
+        $(function () { 
+          $('[data-toggle="tooltip"]').tooltip() 
+        })
+      </script>
 
     </head>
     <body>
 
       <div class="container">
   <h1>Calculate REE and TEE</h1>
+  <h5>REE stands for "Resting Energy Expenditure," or the number of calories (kcal) required by the body at rest. Total Energy Expenditure (TEE) takes into account one's activity level and (if applicable) desired weight loss per week. This app was built using the Mifflin-St. Jeor equation.</h5>
 
   <form action="/">
     	<p class="form-group">
@@ -36,21 +41,61 @@
       	<label>Age (years): <input class="form-control" name="age" value="<%= params[:age] %>"/></label>
     	</p>
     	<p>
-    		Sex:
-    		<label class="radio-inline"><input type="radio" value="male" name="sex" <%= "checked" if params[:sex] == "male" %> /> Male</label>
-    		<label class="radio-inline"><input type="radio" value="female" name="sex" <%= "checked" if params[:sex] == "female" %> /> Female</label>
+    		<b>Sex:</b>
+    		<div class="radio">
+          <label>
+            <input type="radio" value="male" name="sex" <%= "checked" if params[:sex] == "male" %> />
+            Male
+          </label>
+        </div>
+        <div class="radio">
+    		  <label>
+            <input type="radio" value="female" name="sex" <%= "checked" if params[:sex] == "female" %> />
+            Female
+          </label>
+        </div>
     	</p>
     	<p>
-    		Activity level:
-    		<label class="radio-inline" data-toggle="tooltip" data-placement="top" title="No activity outside of ADLs"><input type="radio" value="1.3" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.3" %> /> Sedentary</label>
-    		<label class="radio-inline"><input type="radio" value="1.5" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.5" %> /> Moderately active</label>
-    		<label class="radio-inline"><input type="radio" value="1.7" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.7" %> /> Very active</label>
+    		<b>Activity level:</b>
+    		<div class="radio">
+          <label>
+            <input type="radio" value="1.3" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.3" %> />
+            Sedentary
+          </label>
+        </div>
+        <div class="radio">
+    		  <label>
+            <input type="radio" value="1.5" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.5" %> />
+            Moderately active
+          </label>
+        </div>
+        <div class="radio">
+    		  <label>
+            <input type="radio" value="1.7" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.7" %> /> 
+            Very active
+          </label>
+        </div>
     	</p>
     	<p>
-    		Targeted weight loss per week:
-    		<label class="radio-inline"><input type="radio" value="1" name="weight_loss" <%= "checked" if params[:weight_loss] == "1" %> /> 1 lb</label>
-    		<label class="radio-inline"><input type="radio" value="1.5" name="weight_loss" <%= "checked" if params[:weight_loss] == "1.5" %> /> 1.5 lb</label>
-    		<label class="radio-inline"><input type="radio" value="2" name="weight_loss" <%= "checked" if params[:weight_loss] == "2" %> /> 2 lb</label>
+    		<b>Targeted weight loss per week:</b>
+    		<div class="radio">
+          <label>
+            <input type="radio" value="1" name="weight_loss" <%= "checked" if params[:weight_loss] == "1" %> />
+            1 lb
+          </label>
+        </div>
+    		<div class="radio">
+          <label>
+            <input type="radio" value="1.5" name="weight_loss" <%= "checked" if params[:weight_loss] == "1.5" %> />
+            1.5 lb
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" value="2" name="weight_loss" <%= "checked" if params[:weight_loss] == "2" %> />
+            2 lb
+          </label>
+        </div>
     	</p>
     	<p>
     	<button class="btn btn-primary">Calculate</button> 
