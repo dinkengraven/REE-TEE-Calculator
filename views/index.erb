@@ -1,59 +1,83 @@
-<h1>Calculate REE and TEE</h1>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>REE/TEE Calculator</title>
 
-<form action="/">
-	<p>
-		<label>Height (inches): <input name="height" value="<%= params[:height] %>"/></label> 
-	</p>
-	<p>
-		<label>Weight (pounds): <input name="weight" value="<%= params[:weight] %>"/></label>
-  	</p>
-  	<p>
-  		<label>Age (years): <input name="age" value="<%= params[:age] %>"/></label>
-  	</p>
-  	<p>
-  		Sex:
-  		<label><input type="radio" value="male" name="sex" <%= "checked" if params[:sex] == "male" %> /> Male</label>
-  		<label><input type="radio" value="female" name="sex" <%= "checked" if params[:sex] == "female" %> /> Female</label>
-  	</p>
-  	<p>
-  		Activity level:
-  		<label><input type="radio" value="1.3" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.3" %> /> Sedentary</label>
-  		<label><input type="radio" value="1.5" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.5" %> /> Moderately active</label>
-  		<label><input type="radio" value="1.7" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.7" %> /> Very active</label>
-  	</p>
-  	<p>
-  		Target weight loss per week:
-  		<label><input type="radio" value="1" name="weight_loss" <%= "checked" if params[:weight_loss] == "1" %> /> 1 lb</label>
-  		<label><input type="radio" value="1.5" name="weight_loss" <%= "checked" if params[:weight_loss] == "1.5" %> /> 1.5 lb</label>
-  		<label><input type="radio" value="2" name="weight_loss" <%= "checked" if params[:weight_loss] == "2" %> /> 2 lb</label>
-  	</p>
-  	<p>
-  	<input type="submit" /> 
-  	</p>
-</form>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-<% if params[:height].nil? == false %>
-  <p>
-  REE = <%= @ree %> kcal
-  </p>
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
-  <p>
-  TEE = <%= @tee %> kcal/day to lose <%= @weight_loss %> lb per week.
-  </p>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
 
-  <table border="0" width="24%" cellpadding="2" cellspacing="1">
-  	<tr>
-  		<th align="center" colspan="2"><br><H3>Calorie Needs as Weight is Lost</H3>
-  		</th>
-  	</tr>
-  	<tr align="center">
-  		<th>Weight lost</th>
-  		<th>Calorie needs (kcal/day)</th>
-  	<tr>
-  	<% @kcal_trends.each_with_index do |kcal_needs, pounds_lost| %>
-  		<td align="right"><%= pounds_lost %> lb</td>
-  		<td align="center"><%= kcal_needs %></td>
-  	</tr>
-  	<% end %>
-  </table>
-<% end %>
+      <div class="container">
+  <h1>Calculate REE and TEE</h1>
+
+  <form action="/">
+    	<p class="form-group">
+    		<label>Height (inches): <input class="form-control" name="height" value="<%= params[:height] %>"/></label> 
+    	</p>
+    	<p class="form-group">
+  		  <label>Weight (pounds): <input class="form-control" name="weight" value="<%= params[:weight] %>"/></label>
+      </p>
+      <p class="form-group">
+      	<label>Age (years): <input class="form-control" name="age" value="<%= params[:age] %>"/></label>
+    	</p>
+    	<p>
+    		Sex:
+    		<label class="radio-inline"><input type="radio" value="male" name="sex" <%= "checked" if params[:sex] == "male" %> /> Male</label>
+    		<label class="radio-inline"><input type="radio" value="female" name="sex" <%= "checked" if params[:sex] == "female" %> /> Female</label>
+    	</p>
+    	<p>
+    		Activity level:
+    		<label class="radio-inline"><input type="radio" value="1.3" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.3" %> /> Sedentary</label>
+    		<label class="radio-inline"><input type="radio" value="1.5" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.5" %> /> Moderately active</label>
+    		<label class="radio-inline"><input type="radio" value="1.7" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.7" %> /> Very active</label>
+    	</p>
+    	<p>
+    		Targeted weight loss per week:
+    		<label class="radio-inline"><input type="radio" value="1" name="weight_loss" <%= "checked" if params[:weight_loss] == "1" %> /> 1 lb</label>
+    		<label class="radio-inline"><input type="radio" value="1.5" name="weight_loss" <%= "checked" if params[:weight_loss] == "1.5" %> /> 1.5 lb</label>
+    		<label class="radio-inline"><input type="radio" value="2" name="weight_loss" <%= "checked" if params[:weight_loss] == "2" %> /> 2 lb</label>
+    	</p>
+    	<p>
+    	<button class="btn btn-primary">Calculate</button> 
+    	</p>
+  </form>
+
+  <% if params[:height].nil? == false %>
+    <p>
+      REE = <%= @ree %> kcal
+    </p>
+
+    <p>
+    TEE = <%= @tee %> kcal/day to lose <%= @weight_loss %> lb per week.
+    </p>
+  <div>  
+    <table class="table table-hover table-bordered">
+    	<tr>
+    		<th colspan="2"><br><h4>Calorie Needs as Weight is Lost</h4>
+    		</th>
+    	</tr>
+    	<tr>
+    		<th>Weight lost</th>
+    		<th>Calorie needs (kcal/day)</th>
+    	</tr>
+    	<% @kcal_trends.each_with_index do |kcal_needs, pounds_lost| %>
+    		<tr>
+          <td><%= pounds_lost %> lb</td>
+      		<td><%= kcal_needs %></td>
+      	</tr>
+    	<% end %>
+    </table>
+  <% end %>
+  </div>
+  </body>
+</html>
