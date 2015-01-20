@@ -11,7 +11,9 @@ end
 
 def calculate_tee(ree, activity_factor, weight_loss = "1") #this will default weight_loss to 1 unless otherwise specified	
 	tee = ree * activity_factor
-	if weight_loss == "1"
+	if weight_loss == "0"
+		return tee
+	elsif weight_loss == "1"
 		return tee - 500
 	elsif weight_loss == "1.5"
 		return tee - 750

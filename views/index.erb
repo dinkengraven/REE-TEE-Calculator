@@ -78,6 +78,12 @@
     	</p>
     	<p>
     		<b>Targeted weight loss per week:</b>
+        <div class ="radio">
+          <label>
+            <input type="radio" value="0" name="weight_loss" <%= "checked" if params[:weight_loss] == "0" %> />
+            None
+            </label>
+        </div>
     		<div class="radio">
           <label>
             <input type="radio" value="1" name="weight_loss" <%= "checked" if params[:weight_loss] == "1" %> />
@@ -98,33 +104,42 @@
         </div>
     	</p>
     	<p>
-    	<button class="btn btn-primary">Calculate</button> 
+    	 <button class="btn btn-primary">Calculate</button> 
     	</p>
   </form>
 
-  <% if params[:height].nil? == false %>
+  <% if params[:height].nil? == false && params[:weight_loss] != "0" %>
     <p>
       REE = <%= @ree %> kcal
     </p>
-
     <p>
-    TEE = <%= @tee %> kcal/day to lose <%= @weight_loss %> lb per week.
+      TEE = <%= @tee %> kcal/day to lose <%= @weight_loss %> lb per week.
     </p>
-  <div>  
-    <table class="table table-hover table-bordered">
-    	<tr>
-    		<th colspan="2"><br><h4>Calorie Needs as Weight is Lost</h4>
-    		</th>
-    	</tr>
-    	<tr>
-    		<th>Weight lost</th>
-    		<th>Calorie needs (kcal/day)</th>
-    	</tr>
-    	<% @kcal_trends.each_with_index do |kcal_needs, pounds_lost| %>
-    		<tr>
-          <td><%= pounds_lost %> lb</td>
-      		<td><%= kcal_needs %></td>
-      	</tr>
+      <% else %>
+        <p>
+         REE = <%= @ree %> kcal
+        </p>
+        <p>
+        TEE = <%= @tee %> kcal/day to maintain weight.
+        </p>
+    </p>
+  <% end %>
+  <% if params[:height].nil? == false && params[:weight_loss] != "0" %>  
+    <div>  
+      <table class="table table-hover table-bordered">
+    	 <tr>
+    	   <th colspan="2"><br><h4>Calorie Needs as Weight is Lost</h4>
+    	   </th>
+    	 </tr>
+    	 <tr>
+    		  <th>Weight lost</th>
+    		  <th>Calorie needs (kcal/day)</th>
+    	 </tr>
+    	   <% @kcal_trends.each_with_index do |kcal_needs, pounds_lost| %>
+    	 <tr>
+        <td><%= pounds_lost %> lb</td>
+        <td><%= kcal_needs %></td>
+       </tr>
     	<% end %>
     </table>
     <% end %>
