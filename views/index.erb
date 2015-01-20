@@ -60,19 +60,19 @@
     		<div class="radio">
           <label>
             <input type="radio" value="1.3" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.3" %> />
-            Sedentary
+            <div data-toggle="tooltip" data-placement="right" title="No leisure activity beyond ADLs.">Sedentary</div>
           </label>
         </div>
         <div class="radio">
     		  <label>
             <input type="radio" value="1.5" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.5" %> />
-            Moderately active
+            <div data-toggle="tooltip" data-placement="right" title="Leisure activity at least 30 min, 3 to 4 days/week.">Moderately active</div>
           </label>
         </div>
         <div class="radio">
     		  <label>
             <input type="radio" value="1.7" name="activity_factor" <%= "checked" if params[:activity_factor] == "1.7" %> /> 
-            Very active
+            <div data-toggle="tooltip" data-placement="right" title="Leisure activity at least 60 min, 4 to 5 days/week.">Very active</div>
           </label>
         </div>
     	</p>
