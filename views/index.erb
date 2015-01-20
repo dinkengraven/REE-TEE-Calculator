@@ -115,16 +115,7 @@
     <p>
       TEE = <%= @tee %> kcal/day to lose <%= @weight_loss %> lb per week.
     </p>
-      <% else %>
-        <p>
-         REE = <%= @ree %> kcal
-        </p>
-        <p>
-        TEE = <%= @tee %> kcal/day to maintain weight.
-        </p>
-    </p>
-  <% end %>
-  <% if params[:height].nil? == false && params[:weight_loss] != "0" %>  
+
     <div>  
       <table class="table table-hover table-bordered">
     	 <tr>
@@ -142,7 +133,14 @@
        </tr>
     	<% end %>
     </table>
-    <% end %>
   </div>
+  <% elsif params[:height].nil? == false && params[:weight_loss] == "0" %>
+    <p>
+    REE = <%= @ree %> kcal
+    </p>
+    <p>
+    TEE = <%= @tee %> kcal/day to maintain weight.
+    </p> 
+    <% end %>
   </body>
 </html>
